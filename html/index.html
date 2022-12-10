@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@2.1.0/dist/quasar.umd.prod.js" defer></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+
+
+    <title>shop</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="main_container" v-show="show">
+            <div class="title">
+                <div class="pic"></div>
+                <div class="label">{{label}}</div>
+            </div>
+            <div class="items">
+                <div v-for="item in items" :key="item.id">
+                    <div class="item" @click="selectItem(item)" @mouseover="load_in_info(item)"> {{item.label}}</div>
+                </div>
+                <div class="item" @mouseover="onBack()" @click="selectBack()">{{backBtnLabel}}</div>
+            </div> 
+            <div class="footer" v-show="currentItem_info_imgShow">
+
+              
+                <div class="footer_img"><img :src="currentItem_info_img" width="56" height="56" alt=""></div>
+                <div class="footer_text">{{currentItem_info_text}}</div>
+            </div>
+        </div>
+        <div class="dialog" v-show="dialogShow">
+            <div class="context">
+                <div class="label">Укажите количество товара</div>
+                <input type="number" min="0" max = "50" class="label" value="1" @input="inputVal"> 
+                <div class="btns">
+                    <div class="btn" @click="accept()"> Принять</div>
+                    <div class="btn cnl" @click="closeDialog()"> Отменить</div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./scripts/app.js"></script>
+
+</html>
